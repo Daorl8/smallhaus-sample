@@ -181,12 +181,9 @@ h1,h2,h3{font-family:var(--hand);font-weight:400;line-height:1;color:var(--ink)}
 .qbar .q1{background:var(--ink);color:#fff}
 .qbar .q2{background:#fff;color:var(--ink)}
 
-/* reveal (desktop) + reduced-motion fallback */
-@media(min-width:768px){
- html.js .rv{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
- html.js .rv.in{opacity:1;transform:none}
-}
-@media(prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important;transition:none!important}}
+/* reveal (강제 재생 — 전 화면·reduced-motion 무시) */
+html.js .rv{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+html.js .rv.in{opacity:1;transform:none}
 a:focus-visible,button:focus-visible{outline:2px solid var(--beige-d);outline-offset:3px}
 
 /* desktop */
@@ -253,7 +250,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--beige-d);outline-of
           Find us
         </div>
       </div>
-      <div class="mc-map"><iframe title="스몰하우스 위치 지도" src="https://maps.google.com/maps?hl=ko&amp;q=%EC%A0%84%EB%B6%81%20%EC%A0%84%EC%A3%BC%EC%8B%9C%20%EC%99%84%EC%82%B0%EA%B5%AC%20%EA%B0%84%EB%82%A9%EB%A1%9C%206&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      <div class="mc-map"><iframe title="스몰하우스 위치 지도" src="https://maps.google.com/maps?hl=ko&amp;q=35.8166174354322,127.155248630507&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
       <div class="mc-row"><span class="k">Address</span><span class="v">전북 전주시 완산구 간납로 6</span></div>
       <div class="mc-row"><span class="k">Hours</span><span class="v">화·수·금·토·일·월 11:00 – 19:00<br><span class="off">목요일 정기휴무</span></span></div>
       <div class="mc-btn"><a class="btn btn-fill" href="https://map.kakao.com/link/search/%EC%A0%84%EB%B6%81%20%EC%A0%84%EC%A3%BC%EC%8B%9C%20%EC%99%84%EC%82%B0%EA%B5%AC%20%EA%B0%84%EB%82%A9%EB%A1%9C%206" target="_blank" rel="noopener">카카오맵으로 길찾기 →</a></div>
@@ -422,7 +419,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--beige-d);outline-of
   dw.querySelectorAll('a').forEach(function(a){a.addEventListener('click',cl)});
   addEventListener('keydown',function(e){if(e.key==='Escape')cl()});
   var rvs=[].slice.call(document.querySelectorAll('.rv'));
-  if('IntersectionObserver' in window && matchMedia('(min-width:768px)').matches){
+  if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12});
     rvs.forEach(function(el){io.observe(el)});
     setTimeout(function(){rvs.forEach(function(el){el.classList.add('in')})},1600);
